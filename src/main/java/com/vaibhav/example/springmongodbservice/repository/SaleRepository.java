@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface SaleRepository extends MongoRepository<Sale, String> {
-    @Query("{ 'purchaseMethod' : ?0 }")
-    List<Sale> findAllByPurchaseMethod(String purchaseMethod);
+    @Query("{ 'purchaseMethod' : ?0, 'couponUsed': ?1, 'storeLocation': ?2 }")
+    List<Sale> findAllSalesByParameters(String method, boolean isCouponUsed, String purchaseMethod);
 }

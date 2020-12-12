@@ -31,11 +31,10 @@ public class SaleController {
     }
 
     @GetMapping(path = "/salesby")
-    ResponseEntity<List<Sale>> findSalesByParameter(@RequestParam("purchaseMethod") String purchaseMethod){
-        List<Sale> sales = saleRepository.findAllByPurchaseMethod(purchaseMethod);
+    ResponseEntity<List<Sale>> findSalesByParameter(@RequestParam("purchaseMethod") String purchaseMethod,
+                                                    @RequestParam("coupon") boolean isCouponUsed,
+                                                    @RequestParam("storeLocation") String storeLocation) {
+        List<Sale> sales = saleRepository.findAllSalesByParameters(purchaseMethod, isCouponUsed, storeLocation);
         return ResponseEntity.ok().body(sales);
     }
-
-
-
 }
